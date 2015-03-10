@@ -23,7 +23,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import aly.kafka.examples.consumer.group.ConsumerWorker;
+import aly.kafka.examples.consgroup.ConsumerWorker;
 import aly.kafka.play.tools.ConfPlay;
 import aly.kafka.play.tools.ConsumerConfigFactory;
 import aly.kafka.play.tools.MyLogger;

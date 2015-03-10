@@ -1,4 +1,4 @@
-package aly.kafka.examples.consumer.group;
+package aly.kafka.examples.consgroup;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
