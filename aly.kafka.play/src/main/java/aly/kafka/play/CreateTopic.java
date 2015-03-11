@@ -8,10 +8,10 @@ import aly.kafka.play.tools.ConfPlay;
 import kafka.admin.AdminUtils;
 import kafka.utils.ZKStringSerializer$;
 
-
 // another way - see
 //
 //http://stackoverflow.com/questions/16946778/how-can-we-create-a-topic-in-kafka-from-the-ide-using-api
+//
 public class CreateTopic
 {
 	static public void main(String[] args)

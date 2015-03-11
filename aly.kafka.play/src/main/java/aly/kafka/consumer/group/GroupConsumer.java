@@ -1,4 +1,4 @@
-package aly.kafka.examples.consgroup;
+package aly.kafka.consumer.group;
 
 /**
  * 
