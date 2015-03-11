@@ -35,6 +35,10 @@ public class ConfPlay
 	public final static String REQUEST_ASK_NAME = "request.required.acks";
 	public final static String REQUEST_ASK_VAL = "1";
 
+	
+	public final static String VERTICA_CONN_STR = "jdbc:vertica://verticapoc303p.dev.ch3.s.com:5433/nrtdb";    
+	public final static String VTBL_PRICES_DET_1 = "ALY_PRICE_DET1";  // vertica table for TransTestPriceDetails
+	
 	public static Properties configureProp(BINDING_TYPE eBindType)
 	{
 		Properties props = new Properties();

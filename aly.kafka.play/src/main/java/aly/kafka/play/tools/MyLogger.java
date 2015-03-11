@@ -18,9 +18,24 @@ public class MyLogger
 	static public final String DEF_LOG_FILE = "/Users/ayakubo/Desktop/LastLogs/log2.log";
 	static private int LOG_NUM = 0;
 	
+	/**
+	 * OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL
+	 * 
+	 */
 	static public void main(String [] args)
 	{
-		test1();
+		test0();
+//		test1();
+	}
+
+	static void test0()
+	{
+		Logger logger = createMyLogger("test0", Level.INFO);
+		logger.info("info");
+		logger.debug("debug");
+		logger.warn("warn");
+		logger.error("error");
+		logger.fatal("fatal");
 	}
 
 	static void test1()
@@ -58,7 +73,7 @@ public class MyLogger
 		fileAppender.setName(baseName + "_" + LOG_NUM);
 		fileAppender.setFile(filePath + LOG_NUM);
 		fileAppender.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
-		fileAppender.setThreshold(Level.DEBUG);
+		fileAppender.setThreshold(aThreshold);
 		fileAppender.setAppend(true);
 		fileAppender.activateOptions();
 		LOG_NUM++;
@@ -66,7 +81,7 @@ public class MyLogger
 		ConsoleAppender conAppender = new ConsoleAppender();
 		conAppender.setName("MyConsoleAppender");
 		conAppender.setLayout(new PatternLayout("%d %-5p [%c{1}] %m%n"));
-		conAppender.setThreshold(Level.WARN);
+		conAppender.setThreshold(aThreshold);
 		conAppender.activateOptions();
 		
 		myLogger.setAdditivity(false);
