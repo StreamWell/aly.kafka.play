@@ -2,7 +2,6 @@ package aly.kafka.play.tools;
 
 import java.util.Properties;
 
-import kafka.javaapi.producer.Producer;
 import kafka.producer.ProducerConfig;
 
 // OLD ?

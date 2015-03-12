@@ -1,10 +1,9 @@
-										package aly.kafka.play.tools;
+package aly.kafka.play.tools;
 
 import java.util.Properties;
 
 import kafka.consumer.ConsumerConfig;
 import kafka.producer.ProducerConfig;
-import aly.kafka.local.DwHadopCluster;
 
 public class ConsumerConfigFactory
 {

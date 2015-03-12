@@ -1,11 +1,12 @@
-package aly.kafka.obu.msg;
+package aly.kafka.tranform;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import aly.kafka.obu.msg.IHandler.FldTypesEnum;
-import aly.kafka.obu.msg.IHandler.FldTypesEnum.*;
+import aly.kafka.obu.msg.FldNameType;
+import aly.kafka.obu.msg.IHandler;
+import aly.kafka.obu.msg.MetaField;
+import aly.kafka.obu.msg.StrValueExtractor;
 
 
 // List<E> extends Collection<E>

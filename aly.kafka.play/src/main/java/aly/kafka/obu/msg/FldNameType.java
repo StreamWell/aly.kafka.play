@@ -2,7 +2,7 @@ package aly.kafka.obu.msg;
 
 import aly.kafka.obu.msg.IHandler.FldTypesEnum;
 
-class FldNameType
+public class FldNameType
 {
 	public static FldNameType create(String fldName, IHandler.FldTypesEnum typeHint)
 	{

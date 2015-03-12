@@ -5,10 +5,7 @@ public class DwHadopCluster
 //	KAFKA HOME
 //	dmhadoop301p.prod.ch3.s.com
 //	
-//	Wenye kafka admin in github:  https://github.com/zhuwchicago/hadoop-admin
-	
-	
-	
+//	Wenye kafka admin in github:  https://github.com/zhuwchicago/hadoop-admin		
 //	  zookeepers on dwhadoopm
 //	  dwhadoopm303p.prod.ch3.s.com:2181,dwhadoopm302p.prod.ch3.s.com:2181,dwhadoopm301p.prod.ch3.s.com:2181	 	
 	

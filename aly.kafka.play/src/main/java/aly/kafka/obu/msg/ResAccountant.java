@@ -2,6 +2,9 @@ package aly.kafka.obu.msg;
 
 import java.util.Map;
 
+import aly.kafka.loader.ILoader;
+import aly.kafka.tranform.ITransormer;
+
 public class ResAccountant
 {
 	private static class SingletonHolder

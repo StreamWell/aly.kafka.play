@@ -1,8 +1,11 @@
 package aly.kafka.obu.msg;
 
-public class MetaDirector
+import aly.kafka.loader.ILoader;
+import aly.kafka.tranform.ITransormer;
+
+public class StoreDirector
 {
-	MetaDirector(ResAccountant value)
+	StoreDirector(ResAccountant value)
 	{
 		accountant = value;
 	}
