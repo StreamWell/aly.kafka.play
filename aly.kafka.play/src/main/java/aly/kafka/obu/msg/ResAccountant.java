@@ -24,9 +24,19 @@ public class ResAccountant
 		return ResAccounterBuilder.createInCode();
 	}
 	
+	/**
+	 *  some protection provided by package visibility
+	 */
+	void configure(Map<Integer,StoreCred> storeMap, Map<Integer,HandlerRecord> transfomerMap, Map<Integer,HandlerRecord> loaderMap)
+	{
+		this.storeMap = storeMap;
+		this.transfomerMap = transfomerMap;
+		this.loaderMap = loaderMap;
+	}
+	
 	private Map<Integer,StoreCred> storeMap;
 	private Map<Integer,HandlerRecord> transfomerMap;
-	private Map<Integer,HandlerRecord> LoaderMap;
+	private Map<Integer,HandlerRecord> loaderMap;
 	
 	StoreCred getStoreCred(int storeID)
 	{
@@ -42,7 +52,7 @@ public class ResAccountant
 	
 	ILoader getLoader(int loaderID)
 	{
-		HandlerRecord rec = LoaderMap.get(loaderID);
+		HandlerRecord rec = loaderMap.get(loaderID);
 		ILoader loader = (ILoader)rec.getInstance();
 		return loader;
 	}

@@ -3,6 +3,11 @@ package aly.kafka.obu.msg;
 import aly.kafka.loader.ILoader;
 import aly.kafka.tranform.ITransormer;
 
+/**
+ *	Class manages access to credentials and binding end for different stores (store := DB, table)
+ *  
+ *  Class methods take MsgMetadata as parameter, and using ResAccountant obtains store data
+ */
 public class StoreDirector
 {
 	StoreDirector(ResAccountant value)

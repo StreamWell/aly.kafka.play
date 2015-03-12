@@ -13,7 +13,9 @@ public class ConfPlay
 	enum BINDING_TYPE {
 		ADMIN, PRODUCE, CONSUME
 	};
-
+	public final static String ENUSER = "ayakubo";
+	public final static String ENPASS = "ayakubo15";
+	
 	public final static String BROKERS_PARAM_NAME = "metadata.broker.list";
 	public final static String BROKERS_POC_KAFKA = "omniturert301p.dev.ch3.s.com, omniturert302p.dev.ch3.s.com, omniturert304p.dev.ch3.s.com"; 
 	public final static String BROKERS_DEF_POC = "omniturert301p.dev.ch3.s.com"; 

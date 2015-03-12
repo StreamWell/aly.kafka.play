@@ -16,8 +16,8 @@ public class CreateTopic
 {
 	static public void main(String[] args)
 	{
-		String TOPIC_NAME = "flee";
-		int partitionNumber = 2;
+		String TOPIC_NAME = "zzz";
+		int partitionNumber = 1;
 		
 		ZkClient zkClient = ZkHelper.createZkClient("localhost:2181");
 		Properties topicConfig = new Properties();

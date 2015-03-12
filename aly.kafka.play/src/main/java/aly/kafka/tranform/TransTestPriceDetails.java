@@ -22,6 +22,8 @@ public class TransTestPriceDetails implements ITransormer
  *  <header> := <storID>,<transformerID>,<loaderID>
  *  <body := string,string,...  
  */
+	public static final int handlerID = 10;
+	
 	private static final List<FldNameType> fldNamesTypes;
 	
 	static
@@ -36,6 +38,14 @@ public class TransTestPriceDetails implements ITransormer
 		
 		nametype = FldNameType.create("fld3", IHandler.FldTypesEnum.E_DOUBLE);
 		fldNamesTypes.add(nametype);
+	}
+	
+	public TransTestPriceDetails() {}
+	
+	@Override
+	public int getHandlerID()
+	{
+		return handlerID;
 	}
 	
 	@Override
