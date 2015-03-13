@@ -34,9 +34,9 @@ public class GroupConsumer
 	public static void main(String[] args)
 	{
 		String zooKeeper = ConfPlay.LOCAL_BROKER_DEF;
-		String groupId = "grp_" + 7;
+		String groupId = "group35";
 		String topic = "zzz";
-		int threads = 2;
+		int threads = 1;
 
 		GroupConsumer grpConsumer = new GroupConsumer(zooKeeper, topic, groupId);
 		grpConsumer.run(threads);
@@ -90,7 +90,7 @@ public class GroupConsumer
 //			groupTest.run();
 			threadNumber++;
 		}
-		logger.debug("GroupConsumer:run() on exit");
+		logger.debug("GroupConsumer:run() on exit. threadNumber: " + threadNumber);
 	}
 
 //	private static ConsumerConfig createConsumerConfig(String a_zookeeper, String a_groupId)

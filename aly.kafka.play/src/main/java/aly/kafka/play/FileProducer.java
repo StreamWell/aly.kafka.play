@@ -49,7 +49,7 @@ public class FileProducer
 	public void init(Logger logger)
 	{
 		this.logger = logger;
-		ProducerConfig config = ConsumerConfigFactory.createProviderConfig(ConfPlay.BROKER_LOCAL);
+		ProducerConfig config = ConsumerConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		producer = new Producer<String, String>(config);
 	}
 	

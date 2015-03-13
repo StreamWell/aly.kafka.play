@@ -37,7 +37,7 @@ public class ConsumerConfigFactory
 		return new ConsumerConfig(props);	
 	}
 	
-	public static ProducerConfig createProviderConfig(String skConnectStr)
+	public static ProducerConfig createProducerConfig(String skConnectStr)
 	{
 		ProducerConfig prodConfig = null;
 

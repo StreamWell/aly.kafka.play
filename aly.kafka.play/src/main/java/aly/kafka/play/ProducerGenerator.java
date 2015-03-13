@@ -29,7 +29,7 @@ public class ProducerGenerator
 //
 //		ProducerConfig config = new ProducerConfig(props);
 //		
-		ProducerConfig config = ConsumerConfigFactory.createProviderConfig(ConfPlay.BROKER_LOCAL);
+		ProducerConfig config = ConsumerConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		Producer<String, String> producer = new Producer<String, String>(config);
 
 		for(int count = 0; count < 3; count++)

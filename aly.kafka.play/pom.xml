@@ -14,7 +14,15 @@
 		<jdkLevel>1.7</jdkLevel>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>org.apache.kafka</id>
+			<url>http://mvnrepository.com/artifact/org.apache.kafka/</url>
+		</repository>
+	</repositories>
+
 	<build>
+	<pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -37,15 +45,26 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>1.7.7</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		</pluginManagement>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>org.apache.kafka</id>
-			<url>http://mvnrepository.com/artifact/org.apache.kafka/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -83,6 +102,11 @@
 			<groupId>vertica</groupId>
 			<artifactId>vertica-jdbc</artifactId>
 			<version>4.0.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>1.7.7</version>
 		</dependency>
 	</dependencies>
 
