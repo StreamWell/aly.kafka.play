@@ -3,7 +3,7 @@ package aly.kafka.obu.msg;
 import java.io.Serializable;
 import java.util.List;
 
-public class ObuStringMsg implements IObuMsg, Serializable
+public class ObuStringMsg implements IObuMsg
 {
 	private static final long serialVersionUID = 5806732019684057597L;
 
