@@ -18,7 +18,7 @@ public class TransTestPriceDetails implements ITransormer
  * The message (payload) should have the following structure:
  * The  has a structure : 
  * 
- * 	<payload> := <header>,<body>
+ * 	<protomsg> := <header>,<body>
  *  <header> := <storID>,<transformerID>,<loaderID>
  *  <body := string,string,...  
  */

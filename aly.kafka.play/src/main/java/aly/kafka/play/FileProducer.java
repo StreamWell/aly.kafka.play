@@ -8,7 +8,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.ConsumerConfigFactory;
+import aly.kafka.play.tools.KafkaConfigFactory;
 import aly.kafka.play.tools.FileLineIter;
 import aly.kafka.play.tools.MyLogger;
 import kafka.javaapi.producer.Producer;
@@ -49,7 +49,7 @@ public class FileProducer
 	public void init(Logger logger)
 	{
 		this.logger = logger;
-		ProducerConfig config = ConsumerConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
+		ProducerConfig config = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		producer = new Producer<String, String>(config);
 	}
 	

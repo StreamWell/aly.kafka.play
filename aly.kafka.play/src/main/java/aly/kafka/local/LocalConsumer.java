@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 import aly.kafka.consumer.group.ConsumerWorker;
 import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.ConsumerConfigFactory;
+import aly.kafka.play.tools.KafkaConfigFactory;
 import aly.kafka.play.tools.MyLogger;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
@@ -53,7 +53,7 @@ public class LocalConsumer extends Thread
 	static public LocalConsumer create(String skConnectStr, String topic, String sGroup,
 			int numThreads)
 	{
-		ConsumerConfig consConfig = ConsumerConfigFactory.createConsumerConfig(skConnectStr, sGroup);
+		ConsumerConfig consConfig = KafkaConfigFactory.createConsumerConfig(skConnectStr, sGroup);
 		LocalConsumer locCons = new LocalConsumer(consConfig, topic, numThreads);
 
 		return locCons;
@@ -61,7 +61,7 @@ public class LocalConsumer extends Thread
 
 	private static ConsumerConfig buildConsumerConfig(String skConnectStr, String sGroup)
 	{
-		ConsumerConfig consConfig = ConsumerConfigFactory.createConsumerConfig(skConnectStr, sGroup);
+		ConsumerConfig consConfig = KafkaConfigFactory.createConsumerConfig(skConnectStr, sGroup);
 		return consConfig;
 	}
 

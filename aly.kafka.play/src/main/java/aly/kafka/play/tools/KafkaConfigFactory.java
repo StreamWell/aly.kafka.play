@@ -5,7 +5,7 @@ import java.util.Properties;
 import kafka.consumer.ConsumerConfig;
 import kafka.producer.ProducerConfig;
 
-public class ConsumerConfigFactory
+public class KafkaConfigFactory
 {
 	public static ConsumerConfig createConsumerConfig(String skConnectStr, String sGroup)
 	{
@@ -33,6 +33,11 @@ public class ConsumerConfigFactory
 //		props.put("consumer.timeout.ms", "1000");
 		props.put("consumer.timeout.ms", "-1");
 		props.put("group.id", sGroup);
+		
+		// trying this too - this for Broker configurtation
+//		props.put("log.dirs", "/Useers/ayakubo/tmp/kafka-logs");		// tmp/kafka-logs
+//		props.put("auto.create.topics.enable", "true");					// auto.create.topics.enable
+//		props.put("delete.topic.enable", "true");					// delete.topic.enable
 
 		return new ConsumerConfig(props);	
 	}

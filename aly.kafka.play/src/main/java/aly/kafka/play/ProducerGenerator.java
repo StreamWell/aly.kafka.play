@@ -3,7 +3,7 @@ package aly.kafka.play;
 import java.util.Properties;
 
 import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.ConsumerConfigFactory;
+import aly.kafka.play.tools.KafkaConfigFactory;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
@@ -29,7 +29,7 @@ public class ProducerGenerator
 //
 //		ProducerConfig config = new ProducerConfig(props);
 //		
-		ProducerConfig config = ConsumerConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
+		ProducerConfig config = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		Producer<String, String> producer = new Producer<String, String>(config);
 
 		for(int count = 0; count < 3; count++)

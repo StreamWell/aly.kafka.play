@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
 
 import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.ConsumerConfigFactory;
+import aly.kafka.play.tools.KafkaConfigFactory;
 import aly.kafka.play.tools.MyLogger;
 
 public class GroupConsumer
@@ -54,7 +54,7 @@ public class GroupConsumer
 	
 	public GroupConsumer(String zooConnStr, String a_topic, String grp)
 	{		
-		ConsumerConfig config = ConsumerConfigFactory.createConsumerConfig(ConfPlay.LOCAL_BROKER_DEF, grp);
+		ConsumerConfig config = KafkaConfigFactory.createConsumerConfig(ConfPlay.LOCAL_BROKER_DEF, grp);
 		consumer = kafka.consumer.Consumer.createJavaConsumerConnector(config);
 		this.topic = a_topic;
 	}
