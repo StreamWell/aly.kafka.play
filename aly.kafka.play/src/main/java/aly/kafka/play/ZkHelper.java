@@ -4,7 +4,7 @@ import kafka.utils.ZKStringSerializer$;
 
 import org.I0Itec.zkclient.ZkClient;
 
-import aly.kafka.play.tools.ConfPlay;
+import aly.kafka.tools.ConfPlay;
 
 public class ZkHelper
 {

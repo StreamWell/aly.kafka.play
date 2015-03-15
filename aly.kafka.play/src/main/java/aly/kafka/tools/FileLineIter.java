@@ -1,4 +1,4 @@
-package aly.kafka.play.tools;
+package aly.kafka.tools;
 
 import java.io.BufferedReader;
 import java.io.IOException;

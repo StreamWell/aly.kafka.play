@@ -1,9 +1,11 @@
-package aly.kafka.obu.msg;
+package aly.kafka.tools;
 
 import java.util.Map;
 
 import aly.kafka.loader.ILoader;
+import aly.kafka.obu.msg.StoreCred;
 import aly.kafka.tranform.ITransormer;
+import aly.kafka.obu.msg.HandlerRecord;
 
 public class ResAccountant
 {
@@ -38,19 +40,19 @@ public class ResAccountant
 	private Map<Integer,HandlerRecord> transfomerMap;
 	private Map<Integer,HandlerRecord> loaderMap;
 	
-	StoreCred getStoreCred(int storeID)
+	public StoreCred getStoreCred(int storeID)
 	{
 		return storeMap.get(storeID);
 	}
 	
-	ITransormer getTransformer(int transformerID)
+	public ITransormer getTransformer(int transformerID)
 	{
 		HandlerRecord rec = transfomerMap.get(transformerID);
 		ITransormer transformer = (ITransormer)rec.getInstance();
 		return transformer;
 	}
 	
-	ILoader getLoader(int loaderID)
+	public ILoader getLoader(int loaderID)
 	{
 		HandlerRecord rec = loaderMap.get(loaderID);
 		ILoader loader = (ILoader)rec.getInstance();

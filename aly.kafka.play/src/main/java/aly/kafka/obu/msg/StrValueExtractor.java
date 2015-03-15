@@ -3,7 +3,7 @@ package aly.kafka.obu.msg;
 import org.apache.log4j.Logger;
 
 import aly.kafka.obu.msg.IHandler.FldTypesEnum;
-import aly.kafka.play.tools.MyLogger;
+import aly.kafka.tools.MyLogger;
 
 public class StrValueExtractor
 {

@@ -3,7 +3,7 @@ package aly.kafka.consumer.group;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import aly.kafka.play.tools.MyLogger;
+import aly.kafka.tools.MyLogger;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 
@@ -22,7 +22,7 @@ public class ConsumerWorker implements Runnable
 	private int m_threadNumber;
 	private Logger logger;
 
-	public ConsumerWorker(KafkaStream stream, int threadNumber)
+	public ConsumerWorker(KafkaStream<byte[], byte[]> stream, int threadNumber)
 	{
 		m_threadNumber = threadNumber;
 		m_stream = stream;

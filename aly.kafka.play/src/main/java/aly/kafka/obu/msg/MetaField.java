@@ -1,5 +1,8 @@
 package aly.kafka.obu.msg;
-
+/**
+ * Container for operations with field value and description
+ * 
+ */
 public class MetaField
 {
 	public static MetaField create(String fldName, String valueAsStr, IHandler.FldTypesEnum eTypeHint)

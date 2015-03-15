@@ -1,4 +1,4 @@
-package aly.kafka.obu.msg;
+package aly.kafka.containers;
 
 /**
  * This class captures the metadata part of (each) Kafka message

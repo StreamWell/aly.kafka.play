@@ -24,9 +24,9 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 import aly.kafka.consumer.group.ConsumerWorker;
-import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.KafkaConfigFactory;
-import aly.kafka.play.tools.MyLogger;
+import aly.kafka.tools.ConfPlay;
+import aly.kafka.tools.KafkaConfigFactory;
+import aly.kafka.tools.MyLogger;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;

@@ -1,4 +1,4 @@
-package aly.kafka.play;
+package producer;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -7,10 +7,10 @@ import java.nio.charset.StandardCharsets;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.KafkaConfigFactory;
-import aly.kafka.play.tools.FileLineIter;
-import aly.kafka.play.tools.MyLogger;
+import aly.kafka.tools.ConfPlay;
+import aly.kafka.tools.FileLineIter;
+import aly.kafka.tools.KafkaConfigFactory;
+import aly.kafka.tools.MyLogger;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;

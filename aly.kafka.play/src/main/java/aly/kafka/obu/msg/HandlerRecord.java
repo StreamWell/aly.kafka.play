@@ -1,8 +1,8 @@
 package aly.kafka.obu.msg;
 
-class HandlerRecord
+public class HandlerRecord
 {
-	static HandlerRecord create(String className)
+	public static HandlerRecord create(String className)
 	{
 		if(className == null)
 			throw new RuntimeException("HandlerRecord.create(): null classname");

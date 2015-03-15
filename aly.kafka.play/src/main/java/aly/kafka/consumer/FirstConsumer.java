@@ -1,4 +1,4 @@
-package aly.kafka.play;
+package aly.kafka.consumer;
 
 import kafka.api.FetchRequest;
 import kafka.api.FetchRequestBuilder;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aly.kafka.play.tools.ConfPlay;
+import aly.kafka.tools.ConfPlay;
 
 /**
  * 

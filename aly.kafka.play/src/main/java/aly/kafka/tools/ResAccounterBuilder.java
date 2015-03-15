@@ -1,28 +1,19 @@
-package aly.kafka.obu.msg;
+package aly.kafka.tools;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import aly.kafka.play.tools.ConfPlay;
+import aly.kafka.obu.msg.HandlerRecord;
+import aly.kafka.obu.msg.StoreCred;
 
 /**
  * VERTICA_PRICES_DET - means Vertica, table = PRICES_DET  (details, each JSON elem goes to separate field, 
  * Fields names are JSON paths.
  * 
- *
+ *		ResAccountant accountant = ResAccounterBuilder.createInCode();
  */
 public class ResAccounterBuilder
 {
-	enum StoreEnum {UNDEF, 
-			// table in Vertica - dwhd_gold.ALY_PRICE_DET1 
-			// transformer - TransTestPriceDetails
-			// 
-		VERTICA_PRICES_DET, 					
-			// 6 fields from offer JSON doc	
-		VERTICA_OFFER_6, 	
-		// fragments of JSON offer doc.
-		VERTICA_OFFER_JSON};					
-	
 	static public ResAccountant createInCode()
 	{
 		Map<Integer,StoreCred> storeMap = new HashMap<>();
@@ -34,11 +25,11 @@ public class ResAccounterBuilder
 				ConfPlay.VERTICA_CONN_STR, ConfPlay.ENUSER, ConfPlay.ENPASS);
 		storeMap.put(storeId, vertica_Store);
 		
-		HandlerRecord transformerRec = HandlerRecord.create("aly.kafka.tranform.TransTestPriceDetails");
+		HandlerRecord transformerRec = HandlerRecord.create("aly.kafka.tranform.TransTestStrMsg");
 		int handleID = transformerRec.getInstance().getHandlerID();
 		transfomerMap.put(handleID, transformerRec);  
 		
-		HandlerRecord loaderRec = HandlerRecord.create("aly.kafka.loader.LoadTestPriceDetails");
+		HandlerRecord loaderRec = HandlerRecord.create("aly.kafka.loader.LoadTestStrDetails");
 		int loaderID = transformerRec.getInstance().getHandlerID();
 		LoaderMap.put(loaderID, loaderRec);
 		

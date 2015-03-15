@@ -19,9 +19,9 @@ import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
 
-import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.KafkaConfigFactory;
-import aly.kafka.play.tools.MyLogger;
+import aly.kafka.tools.ConfPlay;
+import aly.kafka.tools.KafkaConfigFactory;
+import aly.kafka.tools.MyLogger;
 
 public class GroupConsumer
 {

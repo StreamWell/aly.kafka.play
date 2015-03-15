@@ -1,4 +1,4 @@
-package aly.kafka.play;
+package producer;
 
 import java.util.Scanner;
 import java.util.logging.Logger;

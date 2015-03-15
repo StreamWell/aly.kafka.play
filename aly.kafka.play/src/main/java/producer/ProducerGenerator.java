@@ -1,9 +1,9 @@
-package aly.kafka.play;
+package producer;
 
 import java.util.Properties;
 
-import aly.kafka.play.tools.ConfPlay;
-import aly.kafka.play.tools.KafkaConfigFactory;
+import aly.kafka.tools.ConfPlay;
+import aly.kafka.tools.KafkaConfigFactory;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
@@ -32,7 +32,7 @@ public class ProducerGenerator
 		ProducerConfig config = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		Producer<String, String> producer = new Producer<String, String>(config);
 
-		for(int count = 0; count < 3; count++)
+		for(int count = 0; count < 4; count++)
 		{
 			KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic, "" + count, BASE + count);
 			producer.send(data);

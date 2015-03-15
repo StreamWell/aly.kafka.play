@@ -1,6 +1,8 @@
-package aly.kafka.obu.msg;
+package aly.kafka.tools;
 
+import aly.kafka.containers.MsgMetadata;
 import aly.kafka.loader.ILoader;
+import aly.kafka.obu.msg.StoreCred;
 import aly.kafka.tranform.ITransormer;
 
 /**

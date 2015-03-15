@@ -1,4 +1,4 @@
-package aly.kafka.play;
+package aly.kafka.consumer;
 
 import java.util.Collections;
 import java.util.List;

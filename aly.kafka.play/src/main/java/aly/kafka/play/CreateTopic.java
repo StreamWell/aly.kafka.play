@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import org.I0Itec.zkclient.ZkClient;
 
-import aly.kafka.play.tools.ConfPlay;
+import aly.kafka.tools.ConfPlay;
 import kafka.admin.AdminUtils;
 import kafka.utils.ZKStringSerializer$;
 

@@ -10,7 +10,7 @@ import aly.kafka.obu.msg.StrValueExtractor;
 
 
 // List<E> extends Collection<E>
-public class TransTestPriceDetails implements ITransormer
+public class TransTestStrMsg implements ITransormer
 {
 /**
  * This is a test transformer  
@@ -22,7 +22,7 @@ public class TransTestPriceDetails implements ITransormer
  *  <header> := <storID>,<transformerID>,<loaderID>
  *  <body := string,string,...  
  */
-	public static final int handlerID = 10;
+	public static final int handlerID = 100;
 	
 	private static final List<FldNameType> fldNamesTypes;
 	
@@ -40,7 +40,7 @@ public class TransTestPriceDetails implements ITransormer
 		fldNamesTypes.add(nametype);
 	}
 	
-	public TransTestPriceDetails() {}
+	public TransTestStrMsg() {}
 	
 	@Override
 	public int getHandlerID()
