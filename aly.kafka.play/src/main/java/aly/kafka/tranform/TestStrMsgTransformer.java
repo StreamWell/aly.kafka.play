@@ -6,11 +6,11 @@ import java.util.List;
 import aly.kafka.obu.msg.FldNameType;
 import aly.kafka.obu.msg.IHandler;
 import aly.kafka.obu.msg.MetaField;
-import aly.kafka.obu.msg.StrValueExtractor;
+import aly.kafka.tools.StrValueExtractor;
 
 
 // List<E> extends Collection<E>
-public class TransTestStrMsg implements ITransormer
+public class TestStrMsgTransformer implements ITransormer
 {
 /**
  * This is a test transformer  
@@ -40,7 +40,7 @@ public class TransTestStrMsg implements ITransormer
 		fldNamesTypes.add(nametype);
 	}
 	
-	public TransTestStrMsg() {}
+	public TestStrMsgTransformer() {}
 	
 	@Override
 	public int getHandlerID()
@@ -51,7 +51,7 @@ public class TransTestStrMsg implements ITransormer
 	@Override
 	public List<MetaField> transform(String payload)
 	{
-		List<MetaField> metaFldLst = new ArrayList<>();
+		List<MetaField> metaFldList = new ArrayList<>();
 		
 		String[] elems = payload.split(",");
 		int storeID = Integer.parseInt(elems[0]);
@@ -63,10 +63,10 @@ public class TransTestStrMsg implements ITransormer
 		{
 			String fldName = nameType.getFldName();
 			String fldAsStr = elems[posInElem++];
-			FldTypesEnum eTypeHint = nameType.geteTypeHint();
-			Object value = StrValueExtractor.extract(fldAsStr, eTypeHint);
+			FldTypesEnum eTypeHint = nameType.getTypeHint();
 			MetaField metaFld = MetaField.create(fldName, elems[posInElem++], eTypeHint);
+			metaFldList.add(metaFld);
 		}
-		return metaFldLst;
+		return metaFldList;
 	}
 }

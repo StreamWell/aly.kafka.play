@@ -19,18 +19,17 @@ package aly.kafka.local;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
-import aly.kafka.consumer.group.ConsumerWorker;
-import aly.kafka.tools.ConfPlay;
-import aly.kafka.tools.KafkaConfigFactory;
-import aly.kafka.tools.MyLogger;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
+
+import org.apache.log4j.Logger;
+
+import aly.kafka.tools.ConfPlay;
+import aly.kafka.tools.KafkaConfigFactory;
+import aly.kafka.tools.MyLogger;
 
 public class LocalConsumer extends Thread
 {

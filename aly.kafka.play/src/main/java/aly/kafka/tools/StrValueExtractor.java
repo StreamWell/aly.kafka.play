@@ -1,15 +1,15 @@
-package aly.kafka.obu.msg;
+package aly.kafka.tools;
 
 import org.apache.log4j.Logger;
 
+import aly.kafka.obu.msg.IHandler;
 import aly.kafka.obu.msg.IHandler.FldTypesEnum;
-import aly.kafka.tools.MyLogger;
 
 public class StrValueExtractor
 {
 	static Logger myLog = MyLogger.createMyLogger("StrValueExtractor");
 
-	public static Object extract(String sVal, FldTypesEnum eTypeHint)
+	public static Object extract(String sValueAsStr, FldTypesEnum eTypeHint)
 	{
 		Object ret = null;
 		try
@@ -19,17 +19,17 @@ public class StrValueExtractor
 			case E_STRING:
 			case E_JSON:
 			{
-				ret = sVal;
+				ret = sValueAsStr;
 				break;
 			}
 			case E_INT:
 			{
-				ret = Integer.parseInt(sVal);
+				ret = Integer.parseInt(sValueAsStr);
 				break;
 			}
 			case E_DOUBLE:
 			{
-				ret = Double.parseDouble(sVal);
+				ret = Double.parseDouble(sValueAsStr);
 				break;
 			}
 			default:

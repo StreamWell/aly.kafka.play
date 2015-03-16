@@ -1,4 +1,4 @@
-package producer;
+package aly.kafka.producer;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -23,7 +23,7 @@ public class FileProducer
 
 	static public void main(String[] args) throws IOException
 	{
-		Logger logger = MyLogger.createMyLogger(LOGFILE, Level.DEBUG);
+		Logger logger = MyLogger.createMyLoggerDefPath(LOGFILE, Level.DEBUG);
 		logger.debug("main() on entry");
 		FileProducer fileProucer = new FileProducer(INPUT_FILE, 10, "zzz", 0);
 		fileProucer.init(logger);

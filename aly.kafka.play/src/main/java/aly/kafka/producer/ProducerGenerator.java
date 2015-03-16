@@ -1,4 +1,4 @@
-package producer;
+package aly.kafka.producer;
 
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ public class ProducerGenerator
 	public static void main(String[] args)
 	{
 		String BASE = "Abra_";
-		String topic = "zzz";
+		String topic = "test";
 		
 		if(args.length >= 1)
 		{
@@ -21,14 +21,6 @@ public class ProducerGenerator
 				BASE = args[0];
 		}
 		
-//		Properties props = new Properties();
-//		props.put("metadata.broker.list", ConfPlay.BROKER_LOCAL);    // PRODUCER_DEF_POC 	PRODUCER_BINDING
-//		props.put("serializer.class", "kafka.serializer.StringEncoder");
-//		props.put("partitioner.class", "aly.kafka.play.HashPartitioner");
-//		props.put("request.required.acks", "1");
-//
-//		ProducerConfig config = new ProducerConfig(props);
-//		
 		ProducerConfig config = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		Producer<String, String> producer = new Producer<String, String>(config);
 

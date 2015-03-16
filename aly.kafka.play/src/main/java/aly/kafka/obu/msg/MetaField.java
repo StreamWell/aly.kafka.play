@@ -31,7 +31,7 @@ public class MetaField
 		return valueAsStr;
 	}
 
-	public IHandler.FldTypesEnum geteTypeHint()
+	public IHandler.FldTypesEnum getTypeHint()
 	{
 		return eTypeHint;
 	}

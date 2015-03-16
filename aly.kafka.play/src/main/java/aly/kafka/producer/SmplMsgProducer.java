@@ -1,4 +1,4 @@
-package producer;
+package aly.kafka.producer;
 
 import java.util.Scanner;
 import java.util.logging.Logger;

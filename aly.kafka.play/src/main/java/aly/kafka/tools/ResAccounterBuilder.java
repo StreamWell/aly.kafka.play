@@ -25,11 +25,11 @@ public class ResAccounterBuilder
 				ConfPlay.VERTICA_CONN_STR, ConfPlay.ENUSER, ConfPlay.ENPASS);
 		storeMap.put(storeId, vertica_Store);
 		
-		HandlerRecord transformerRec = HandlerRecord.create("aly.kafka.tranform.TransTestStrMsg");
+		HandlerRecord transformerRec = HandlerRecord.create("aly.kafka.tranform.TestStrMsgTransformer");
 		int handleID = transformerRec.getInstance().getHandlerID();
 		transfomerMap.put(handleID, transformerRec);  
 		
-		HandlerRecord loaderRec = HandlerRecord.create("aly.kafka.loader.LoadTestStrDetails");
+		HandlerRecord loaderRec = HandlerRecord.create("aly.kafka.loader.TestStrMsgLoader");
 		int loaderID = transformerRec.getInstance().getHandlerID();
 		LoaderMap.put(loaderID, loaderRec);
 		

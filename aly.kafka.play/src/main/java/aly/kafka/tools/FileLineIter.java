@@ -20,7 +20,7 @@ public class FileLineIter
 
 	public static void main(String[] args) throws IOException
 	{
-		logger = MyLogger.createMyLogger(LOGFILE, Level.DEBUG);
+		logger = MyLogger.createMyLoggerDefPath(LOGFILE, Level.DEBUG);
 
 		FileLineIter test = new FileLineIter(INPUT_FILE);
 //		test.readAll(INPUT_FILE);

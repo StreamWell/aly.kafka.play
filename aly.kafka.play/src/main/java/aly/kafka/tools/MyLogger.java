@@ -15,7 +15,8 @@ import aly.kafka.local.LocalConsumer;
 public class MyLogger
 {
 	static private SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yy:HH:mm:ss:SSS");
-	static public final String DEF_LOG_FILE = "/Users/ayakubo/Desktop/LastLogs/log2.log";
+	static public final String DEF_LOG_DIR = "/Users/ayakubo/Desktop/LastLogs/";
+	static public final String DEF_LOG_FILE = "def-log2.log";
 	static private int LOG_NUM = 0;
 	
 	/**
@@ -30,7 +31,7 @@ public class MyLogger
 
 	static void test0()
 	{
-		Logger logger = createMyLogger("test0", Level.INFO);
+		Logger logger = createMyLoggerDefPath("test0", Level.INFO);
 		logger.info("info");
 		logger.debug("debug");
 		logger.warn("warn");
@@ -43,7 +44,7 @@ public class MyLogger
 		List<Logger> logList = new ArrayList<Logger>();
 		for(int i=3; i<15; i++)
 		{
-			Logger logger = createMyLogger("test" + i, Level.DEBUG);
+			Logger logger = createMyLoggerDefPath("test1" + i, Level.DEBUG);
 			logList.add(logger);
 		}
 		
@@ -58,15 +59,20 @@ public class MyLogger
 	
 	public static Logger createMyLogger(String baseName)
 	{
-		return createMyLogger(baseName, Level.DEBUG, DEF_LOG_FILE);
+		return createMyLoggerAbsPath(baseName, Level.DEBUG, DEF_LOG_DIR + DEF_LOG_FILE);
 	}
 	
-	public static Logger createMyLogger(String baseName, Level aThreshold)
+	public static Logger createMyLoggerDefPath(String baseName, Level aThreshold)
 	{
-		return createMyLogger(baseName, aThreshold, DEF_LOG_FILE);
+		return createMyLoggerAbsPath(baseName, aThreshold, DEF_LOG_DIR + DEF_LOG_FILE);
 	}
 	
-	public static Logger createMyLogger(String baseName, Level aThreshold, String filePath)
+	public static Logger createMyLoggerRelPath(String baseName, Level aThreshold, String fileName)
+	{
+		return createMyLoggerAbsPath(baseName, aThreshold, DEF_LOG_DIR + baseName);
+	}
+	
+	public static Logger createMyLoggerAbsPath(String baseName, Level aThreshold, String filePath)
 	{
 		Logger myLogger = Logger.getLogger(baseName + "_" + LOG_NUM);
 		FileAppender fileAppender = new FileAppender();

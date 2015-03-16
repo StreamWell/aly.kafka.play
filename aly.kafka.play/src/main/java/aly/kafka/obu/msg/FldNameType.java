@@ -23,7 +23,7 @@ public class FldNameType
 		return fldName;
 	}
 
-	public FldTypesEnum geteTypeHint()
+	public FldTypesEnum getTypeHint()
 	{
 		return eTypeHint;
 	}
