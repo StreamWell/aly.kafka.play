@@ -64,7 +64,7 @@ public class MyLogger
 	
 	public static Logger createMyLoggerDefPath(String baseName, Level aThreshold)
 	{
-		return createMyLoggerAbsPath(baseName, aThreshold, DEF_LOG_DIR + DEF_LOG_FILE);
+		return createMyLoggerAbsPath(baseName, aThreshold, DEF_LOG_DIR + baseName);
 	}
 	
 	public static Logger createMyLoggerRelPath(String baseName, Level aThreshold, String fileName)

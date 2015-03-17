@@ -40,6 +40,8 @@ public class ConfPlay
 	public final static String VERTICA_CONN_STR = "jdbc:vertica://verticapoc303p.dev.ch3.s.com:5433/nrtdb";    
 	public final static String VTBL_PRICES_DET_1 = "ALY_PRICE_DET1";  // vertica table for TransTestPriceDetails
 	
+	static public final int BATCH_SIZE = 5;			// batch size to use in loaders, e.g. VUtils 
+	
 	public static Properties configureProp(BINDING_TYPE eBindType)
 	{
 		Properties props = new Properties();

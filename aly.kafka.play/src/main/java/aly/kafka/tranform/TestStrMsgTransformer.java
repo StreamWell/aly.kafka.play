@@ -40,6 +40,13 @@ public class TestStrMsgTransformer implements ITransormer
 		fldNamesTypes.add(nametype);
 	}
 	
+	public static void main(String[] args)
+	{
+		TestStrMsgTransformer trans = new TestStrMsgTransformer();
+		String payload = "generated_0,0,0.01";
+		trans.transform(payload);
+	}
+	
 	public TestStrMsgTransformer() {}
 	
 	@Override
@@ -54,17 +61,14 @@ public class TestStrMsgTransformer implements ITransormer
 		List<MetaField> metaFldList = new ArrayList<>();
 		
 		String[] elems = payload.split(",");
-		int storeID = Integer.parseInt(elems[0]);
-		int transformerID = Integer.parseInt(elems[1]);
-		int loaderID = Integer.parseInt(elems[2]);
 
-		int posInElem = 3;
+		int posInElem = 0;
 		for(FldNameType nameType : fldNamesTypes)
 		{
 			String fldName = nameType.getFldName();
 			String fldAsStr = elems[posInElem++];
 			FldTypesEnum eTypeHint = nameType.getTypeHint();
-			MetaField metaFld = MetaField.create(fldName, elems[posInElem++], eTypeHint);
+			MetaField metaFld = MetaField.create(fldName, fldAsStr, eTypeHint);
 			metaFldList.add(metaFld);
 		}
 		return metaFldList;

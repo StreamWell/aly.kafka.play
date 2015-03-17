@@ -30,7 +30,7 @@ public class ResAccounterBuilder
 		transfomerMap.put(handleID, transformerRec);  
 		
 		HandlerRecord loaderRec = HandlerRecord.create("aly.kafka.loader.TestStrMsgLoader");
-		int loaderID = transformerRec.getInstance().getHandlerID();
+		int loaderID = loaderRec.getInstance().getHandlerID();
 		LoaderMap.put(loaderID, loaderRec);
 		
 		ResAccountant accountant = new ResAccountant();

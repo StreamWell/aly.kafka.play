@@ -18,32 +18,30 @@ import kafka.producer.ProducerConfig;
 public class FileProducer
 {
 	final static Charset ENCODING = StandardCharsets.UTF_8;
-	final static String LOGFILE = "/Users/Proj/LunaJD/aly.kafka.play/Data/output.aly";
-	final static String INPUT_FILE = "/Users/Proj/LunaJD/aly.kafka.play/Data/input.aly";
+//	final static String LOGFILE = "/Users/Proj/LunaJD/aly.kafka.play/Data/output.aly";
+	final static String INPUT_FILE = "/Users/ayakubo/git/aly.kafka.play/aly.kafka.play/Data/input.aly";
+
+	private static Logger logger = MyLogger.createMyLoggerDefPath("FileProducer", Level.DEBUG);
 
 	static public void main(String[] args) throws IOException
 	{
-		Logger logger = MyLogger.createMyLoggerDefPath(LOGFILE, Level.DEBUG);
 		logger.debug("main() on entry");
-		FileProducer fileProucer = new FileProducer(INPUT_FILE, 10, "zzz", 0);
+		FileProducer fileProucer = new FileProducer(INPUT_FILE, 10, "zzz");
 		fileProucer.init(logger);
 		int count = fileProucer.run();
 		logger.debug("main() on exit: count - " + count);
 	}
 	
-	public FileProducer(String sFilePath, int maxMsgNum, String sTopic, int startPrefVal)
+	public FileProducer(String sFilePath, int maxMsgNum, String sTopic)
 	{
 		filePath = sFilePath;
 		topic = sTopic;
-		this.startPrefVal = startPrefVal;	// msg will have a ~unique numeric preffix.
 		this.maxMsgNum = maxMsgNum;
 	}
 	
-	private Logger logger;
 	String filePath;
 	String topic;
 	int maxMsgNum;
-	int startPrefVal;
 	Producer<String, String> producer;
 	
 	public void init(Logger logger)
@@ -55,25 +53,25 @@ public class FileProducer
 	
 	int run() throws IOException
 	{
+		logger.debug("FileProducer.run() on entry");
 		int numOfMsgs = 0;
 		
 		FileLineIter fileLineIter = new FileLineIter(INPUT_FILE);
 		
-		int msgPrefId = startPrefVal;
 		for(int count=0; count<maxMsgNum; count++)
 		{
 			String line = fileLineIter.nextLine();
 			if(line == null)
 				break;
-			line = "|" + line + "|";
-//			line = line + (count + startPrefVal);
-			line = Integer.toString(count + startPrefVal) + "__" + line;
 			KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic, line);
 			producer.send(data);
+			numOfMsgs++;
 			logger.debug(line);
 		}
 		producer.close();
 		fileLineIter.close();
+
+		logger.debug("FileProducer.run() on exit: numOfMsgs: " + numOfMsgs);
 		return numOfMsgs;
 	}
 }
