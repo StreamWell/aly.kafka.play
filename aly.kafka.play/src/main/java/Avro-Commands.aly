@@ -1,0 +1,19 @@
+This puts the generated class User.java into /src/main/avro/example/avro
+
+
+java -jar /Users/ayakubo/git/aly.kafka.play/aly.kafka.play/lib/avro-tools-1.7.7.jar \
+compile schema User.avsc .
+
+java -jar /Users/ayakubo/git/aly.kafka.play/aly.kafka.play/lib/avro-tools-1.7.7.jar compile schema User.avsc /Users/ayakubo/git/aly.kafka.play/aly.kafka.play/src/main/java/aly/kafka/avro/
+
+../../java/aly/kafka/avro
+
+/Users/ayakubo/git/aly.kafka.play/aly.kafka.play/src/main/java/aly/kafka/avro
+
+
+git://git.apache.org/avro.git
+
+git clone https://github.com
+
+
+git clone https://github.com/apache/avro.git
