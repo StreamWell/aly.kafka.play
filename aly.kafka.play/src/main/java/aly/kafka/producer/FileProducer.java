@@ -26,7 +26,7 @@ public class FileProducer
 	static public void main(String[] args) throws IOException
 	{
 		logger.debug("main() on entry");
-		FileProducer fileProucer = new FileProducer(INPUT_FILE, 10, "zzz");
+		FileProducer fileProucer = new FileProducer(INPUT_FILE, 3, "zzz");
 		fileProucer.init(logger);
 		int count = fileProucer.run();
 		logger.debug("main() on exit: count - " + count);
@@ -46,7 +46,7 @@ public class FileProducer
 	
 	public void init(Logger logger)
 	{
-		this.logger = logger;
+//		this.logger = logger;
 		ProducerConfig config = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		producer = new Producer<String, String>(config);
 	}
