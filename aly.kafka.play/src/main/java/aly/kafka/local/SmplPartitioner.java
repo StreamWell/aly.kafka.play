@@ -11,7 +11,6 @@ public class SmplPartitioner implements Partitioner
 
 	public int partition(Object key, int partNum)
 	{
-		// TODO Auto-generated method stub
 		return key.hashCode() % partNum;
 	}
 

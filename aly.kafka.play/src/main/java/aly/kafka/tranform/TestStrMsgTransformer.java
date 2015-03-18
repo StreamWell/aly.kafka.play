@@ -43,7 +43,7 @@ public class TestStrMsgTransformer implements ITransormer
 	public static void main(String[] args)
 	{
 		TestStrMsgTransformer trans = new TestStrMsgTransformer();
-		String payload = "generated_0,0,0.01";
+		String payload = "ets_msg_0,0,0.01";
 		trans.transform(payload);
 	}
 	

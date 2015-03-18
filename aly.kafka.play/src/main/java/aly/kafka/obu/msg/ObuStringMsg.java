@@ -24,14 +24,12 @@ public class ObuStringMsg implements IObuMsg
 	@Override
 	public ObuKey getKey()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<?> getPayload()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
