@@ -25,6 +25,11 @@ import aly.kafka.tools.StrMsgUtil;
 import aly.kafka.tools.StreamChannelExeption;
 import aly.kafka.tranform.TestStrMsgTransformer;
 
+/**
+ * 
+ *
+ */
+
 public class Driver
 {
 	static Logger logger = MyLogger.createMyLoggerDefPath("Driver", Level.DEBUG);
