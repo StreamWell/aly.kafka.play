@@ -10,6 +10,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import aly.kafka.containers.StrMsgPojo;
+import static aly.kafka.tools.ConfPlay.*;
 import aly.kafka.tools.ConfPlay;
 import aly.kafka.tools.MyLogger;
 import aly.kafka.tools.ResAccountant;
@@ -17,8 +18,11 @@ import aly.kafka.tools.StrMsgUtil;
 import aly.kafka.tools.StreamChannelExeption;
 import aly.kafka.tranform.ITransormer;
 import aly.kafka.loader.ILoader;
+import aly.kafka.loader.IStroreUtil;
+import aly.kafka.loader.mysql.MySqlUtil;
+import aly.kafka.loader.vertica.VUtils;
 import aly.kafka.obu.msg.MetaField;
-import aly.kafka.obu.msg.StoreCred;
+import aly.kafka.obu.msg.StoreDesc;
 import aly.kafka.obu.msg.MetaField;
 
 /**
@@ -63,13 +67,33 @@ public class StrMsgWorker implements IWorker
 			{
 				msgPojo = StrMsgUtil.parse(msg);
 				int storeID = msgPojo.getStoreID();
-				StoreCred storeCred = accountant.getStoreCred(storeID);
+				StoreDesc storeCred = accountant.getStoreCred(storeID);
 				int transformetID = msgPojo.getTransformerID();
 				ITransormer transformer = accountant.getTransformer(transformetID);		// for test msg: aly.kafka.tranform.TestStrMsgTransformer
 				int loaderID = msgPojo.getLoaderID();									
-				ILoader loader =  accountant.getLoader(loaderID);						// for test msg:  aly.kafka.loader.TestStrMsgLoader
-				loader.configure(storeCred, ConfPlay.BATCH_SIZE);						// will check and configure only the first time
+				ILoader loader =  accountant.getLoader(loaderID);
 				
+				IStroreUtil storeUtil = null;
+				ConfPlay.BreedStoreEnum eStoreEnum = storeCred.getStorreBreed();
+				switch(eStoreEnum)
+				{
+					case VERTICA: 
+						storeUtil = new VUtils();
+						break;
+						
+					case MYSQL:
+					{
+						storeUtil = new MySqlUtil();
+						break;
+					}
+					
+					case MEMSQL:
+						throw new StreamChannelExeption("StrMsgWorker.run(): MEMSQL not implemented yet.");
+				}
+				
+				// will check and configure only the first time
+				loader.configure(storeCred, ConfPlay.BATCH_SIZE, storeUtil);
+								
 				String payload = msgPojo.getPayload();
 				List<MetaField> fldList = transformer.transform(payload);	
 				loader.load(fldList);										
@@ -81,7 +105,7 @@ public class StrMsgWorker implements IWorker
 			}
 			//			find store		find transformer	find loader
 		}
-		logger.debug("StrMsgWorker.run() on exit");				
+		logger.debug("StrMsgWorker.run() on exit: count: " + count);				
 	}
 
 	@Override

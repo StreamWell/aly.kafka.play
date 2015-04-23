@@ -13,7 +13,8 @@ public class GenMsgSource implements IMsgSource
 	final int sourceID;
 	int msgNumber;
 	int count = 0;
-	String f1Base = "_GenMsgSource_";
+//	String f2Base = "_GenMsgSource_";
+	String f1Base = "_GreenForest_";
 	
 	GenMsgSource(Map<String, Object> configMap)
 	{

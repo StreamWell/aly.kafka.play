@@ -1,4 +1,4 @@
-package aly.kafka.play;
+package aly.kafka.tools;
 
 import kafka.producer.Partitioner;
 import kafka.utils.VerifiableProperties;

@@ -4,11 +4,11 @@ import java.util.List;
 
 import aly.kafka.obu.msg.IHandler;
 import aly.kafka.obu.msg.MetaField;
-import aly.kafka.obu.msg.StoreCred;
+import aly.kafka.obu.msg.StoreDesc;
 import aly.kafka.tools.StreamChannelExeption;
 
 public interface ILoader extends IHandler
 {
-	void configure(StoreCred storeCred, int batchSize) throws StreamChannelExeption;;
+	void configure(StoreDesc storeCred, int batchSize, IStroreUtil storeUtil) throws StreamChannelExeption;
 	boolean load(List<MetaField> fields) throws StreamChannelExeption;
 }

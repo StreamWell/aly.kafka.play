@@ -49,7 +49,7 @@ public class KafkaConfigFactory
 		Properties props = new Properties();
 		props.put("metadata.broker.list", skConnectStr);    // ConfPlay.BROKER_LOCAL
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
-		props.put("partitioner.class", "aly.kafka.play.HashPartitioner");
+		props.put("partitioner.class", "aly.kafka.tools.HashPartitioner");
 		props.put("request.required.acks", "1");
 
 		prodConfig = new ProducerConfig(props);

@@ -26,7 +26,7 @@ import aly.kafka.tools.MyLogger;
 
 public class GroupConfConsumer
 {
-	private final ConsumerConnector consumer;
+	private final ConsumerConnector consumerConn;
 	private final String topic;
 	private ExecutorService executor;
 
@@ -62,7 +62,7 @@ public class GroupConfConsumer
 	public GroupConfConsumer(String zooConnStr, String a_topic, String grp)
 	{		
 		ConsumerConfig config = KafkaConfigFactory.createConsumerConfig(ConfPlay.LOCAL_BROKER_DEF, grp);
-		consumer = kafka.consumer.Consumer.createJavaConsumerConnector(config);
+		consumerConn = kafka.consumer.Consumer.createJavaConsumerConnector(config);
 		this.topic = a_topic;
 	}
 	
@@ -78,7 +78,7 @@ public class GroupConfConsumer
 		logger.debug("GroupConfConsumer() on entry");
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 		topicCountMap.put(topic, new Integer(nThreads));
-		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer
+		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumerConn
 				.createMessageStreams(topicCountMap);
 		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
 
@@ -97,8 +97,8 @@ public class GroupConfConsumer
 
 	public void shutdown()
 	{
-		if (consumer != null)
-			consumer.shutdown();
+		if (consumerConn != null)
+			consumerConn.shutdown();
 		if (executor != null)
 			executor.shutdown();
 	}

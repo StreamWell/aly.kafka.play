@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import aly.kafka.loader.IStroreUtil;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -31,28 +32,28 @@ import aly.kafka.tools.StreamChannelExeption;
 /**
  *  CLass in the method addRecord(List<Object> values) inserts ONE row into specified V table
  */
-public class VUtils
+public class VUtils extends IStroreUtil
 {
 	static final String ERR_MSG_PREF = "VUtils.getConnection():  failed: ";
 	
 	static final String DROP_STMT = "DROP TABLE IF EXISTS dwhd_gold.ALY_PRICE_DET1 CASCADE";
-	static final String CREATE_STMT = "CREATE TABLE dwhd_gold.ALY_PRICE_DET1 (fld1 CHAR(20), fld2 INT, fld3 REAL)";
+	static final String CREATE_STMT = "CREATE TABLE dwhd_gold.ALY_PRICE_DET1 (fld1 CHAR(20), fld2 INT, fld3 FLOAT)";   // REAL
 	static final String CLEAN_STMT = "DELETE FROM dwhd_gold.ALY_PRICE_DET1";
 	static final String INSERT_STMT = "INSERT INTO dwhd_gold.ALY_PRICE_DET1 (fld1, fld2, fld3) VALUES(?,?,?)";
 		
-	static Logger logger = MyLogger.createMyLoggerDefPath("VUtils", Level.DEBUG);
+//	static Logger logger = MyLogger.createMyLoggerDefPath("VUtils", Level.DEBUG);
 	
 	public static void main(String[] args) throws StreamChannelExeption, SQLException
 	{
-		VUtils test = new VUtils(3);
-		test.prepare();
+		VUtils vUtil = new VUtils(3);
+		vUtil.prepare();
 		
 //		test.dropMyTable();
-//		test.createrMyTable();
-		test.cleanMyTable();
-//		test.insertGenTestvals();
+//		test.createMyTable();
+//		test.cleanMyTable();
+		vUtil.insertTestVals();
 		
-		test.close();
+		vUtil.close();
 	}
 
 //	static public VUtils create(int batchSize)
@@ -60,9 +61,14 @@ public class VUtils
 //		return new VUtils(batchSize);
 //	}
 	
+	public VUtils()
+	{
+		super(3);
+	}
+	
 	public VUtils(int batchSize)
 	{
-		this.batchSize = batchSize;
+		super(batchSize);
 	}
 	
 	public void close() throws SQLException
@@ -77,9 +83,9 @@ public class VUtils
 	private Statement m_stmt;
 	private PreparedStatement m_pstmt;
 	private int batchCount;
-	private int batchSize = 3;  
+//	private int batchSize = 3;  
 	private long maxFleshWaitTimeSec = 10;  
-	private long lastFlesh = 0;  
+	private long lastFlash = 0;  
 	
 	public void prepare() throws StreamChannelExeption
 	{
@@ -113,7 +119,7 @@ public class VUtils
 		logger.debug("VUtils.table created");
 	}
 	
-	public void insertGenTestvals() throws SQLException, StreamChannelExeption
+	public void insertTestVals() throws SQLException, StreamChannelExeption
 	{
 //		addRecord("Aaaa1", 1, 1.1);
 //		addRecord("Aaaa2", 2, 2.2);
@@ -194,7 +200,7 @@ public class VUtils
 			{
 				m_pstmt.executeBatch();
 				m_conn.commit();
-				lastFlesh = new Date().getTime();
+				lastFlash = new Date().getTime();
 				logger.debug("EXECUTING BATCH INSERT");
 			}
 			catch(SQLException sqlEx)
@@ -223,7 +229,7 @@ public class VUtils
 	}
 
 	
-	void flash() throws SQLException, StreamChannelExeption
+	public void flash() throws SQLException, StreamChannelExeption
 	{
 		if(batchCount > 0)
 		{
@@ -232,7 +238,7 @@ public class VUtils
 				logger.debug("flash(): FLASHING");
 				m_pstmt.executeBatch();
 				m_conn.commit();
-				lastFlesh = new Date().getTime();
+				lastFlash = new Date().getTime();
 			}
 			catch(SQLException sqlEx)
 			{

@@ -8,13 +8,13 @@ import kafka.producer.ProducerConfig;
 //zookeepers on dwhadoopm
 //dwhadoopm303p.prod.ch3.s.com:2181,dwhadoopm302p.prod.ch3.s.com:2181,dwhadoopm301p.prod.ch3.s.com:2181	 	
 
-public class ConfPlay
+public class ConfPlay	
 {
 	enum BINDING_TYPE {
 		ADMIN, PRODUCE, CONSUME
 	};
-	public final static String ENUSER = "ayakubo";
-	public final static String ENPASS = "ayakubo15";
+	
+	public enum BreedStoreEnum { VERTICA, MYSQL, MEMSQL }
 	
 	public final static String BROKERS_PARAM_NAME = "metadata.broker.list";
 	public final static String BROKERS_POC_KAFKA = "omniturert301p.dev.ch3.s.com, omniturert302p.dev.ch3.s.com, omniturert304p.dev.ch3.s.com"; 
@@ -38,7 +38,14 @@ public class ConfPlay
 
 	
 	public final static String VERTICA_CONN_STR = "jdbc:vertica://verticapoc303p.dev.ch3.s.com:5433/nrtdb";    
-	public final static String VTBL_PRICES_DET_1 = "ALY_PRICE_DET1";  // vertica table for TransTestPriceDetails
+	public final static String VTBL_PRICES_DET_1 = "VER_TESTTBL";  // vertica test table
+	public final static String VER_TEST_USER = "ayakubo";
+	public final static String VER_TEST_PASS = "ayakubo15";
+	
+	public final static String MYSQL_CONN_STR = "jdbc:mysql://localhost:3306/alydb";    
+	public final static String MYSQL_TEST_TBL = "MYSQL_TESTTBL";  // vertica table for TransTestPriceDetails
+	public final static String MYSQL_TEST_USER = "aly";
+	public final static String MYSQL_TEST_PASS = "Veter45";
 	
 	static public final int BATCH_SIZE = 3;			// batch size to use in loaders, e.g. VUtils 
 	

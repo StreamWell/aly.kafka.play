@@ -14,56 +14,58 @@ import org.apache.log4j.Logger;
 
 import aly.kafka.consumer.group.GroupConfConsumer;
 import aly.kafka.loader.TestStrMsgLoader;
+import aly.kafka.msgsource.CreateSrcEnum;
 import aly.kafka.msgsource.GenMsgSource;
 import aly.kafka.msgsource.MsgSourceFactory;
 import aly.kafka.tools.ConfPlay;
 import aly.kafka.tools.KafkaConfigFactory;
 import aly.kafka.tools.MyLogger;
 import aly.kafka.tools.RandomKey;
-import aly.kafka.tools.ResAccounterBuilder;
+import aly.kafka.tools.ResBuilder;
+import aly.kafka.tools.StoreEnum;
 import aly.kafka.tools.StrMsgUtil;
 import aly.kafka.tools.StreamChannelExeption;
 import aly.kafka.tranform.TestStrMsgTransformer;
 
 /**
- * 
- *
+ *	This is a test driver (starting point) that deal with kafka and Ver5tica.
+ *You supposed to be adding msgs to kafka, and those msgs are immediately transferred to Vertica table
+ *In internally is uses transformer and loader to transform msgs into RDB form and insert into (Vertica) DB
  */
-
-public class Driver
+public class DriverVer
 {
-	static Logger logger = MyLogger.createMyLoggerDefPath("Driver", Level.DEBUG);
+	static Logger logger = MyLogger.createMyLoggerDefPath("DriverVer", Level.DEBUG);
 //	String workerClassName = "aly.kafka.testEnv.TestMsgWorker";
 	String workerClassName = "aly.kafka.driver.StrMsgWorker";
 
 	static int nThreads = 1;
-	static String topic = "yyy";
-	static String sGroup = "group1";
+	static String topic = "zzz";
+	static String sGroup = "grp-35";
 
 	static public void main(String[] args) throws StreamChannelExeption
 	{
 			// this initializes the only ResAccounter instance (it is singleton)
 			// and allows to access ResAccounter instance as ResAccounter.getInstance() 
-		ResAccounterBuilder.createInCode();
-//		produce(2);
-		consume();
+		ResBuilder.createInCode();
+		produce(10);
+//		consume();
 	}
 	
 	static void produce(int numMsg)
 	{
-		Driver driver = new Driver();
+		DriverVer driver = new DriverVer();
 		driver.addMessagesToTopic(ConfPlay.BROKER_LOCAL, topic, numMsg);
 		logger.debug("Added msgs to " + topic + " : " + topic);
 	}
 	
 	static void consume() throws StreamChannelExeption
 	{
-		Driver driver = new Driver();
+		DriverVer driver = new DriverVer();
 		driver.getMsgsFromTopic(ConfPlay.BROKER_LOCAL, topic, sGroup, nThreads);
 		logger.debug("Got msgs from " + topic);
 	}
 	
-	private Driver()
+	private DriverVer()
 	{
 	}
 		
@@ -72,7 +74,7 @@ public class Driver
 		Map<String,Object> createConfigMap = new HashMap<>();
 		createConfigMap.put(GenMsgSource.MSG_NUM_NAME, new Integer(msgNum));
 
-		GenMsgSource genMsgSrc = (GenMsgSource)MsgSourceFactory.create(MsgSourceFactory.SourceEnum.TEST, createConfigMap);
+		GenMsgSource genMsgSrc = (GenMsgSource)MsgSourceFactory.create(CreateSrcEnum.VerTEST, createConfigMap);
 		ProducerConfig prodConfig = KafkaConfigFactory.createProducerConfig(ConfPlay.BROKER_LOCAL);
 		Producer<String, String> producer = new Producer<String, String>(prodConfig);
 			
@@ -84,13 +86,13 @@ public class Driver
 				break;
 			
 			// those three lines makes this code (Driver) specific for test msg
-			int storeID = MsgSourceFactory.SourceEnum.TEST.getPos();
+			int storeID = StoreEnum.MYSQL_TEST_TBL.ordinal();
 			int transID = TestStrMsgTransformer.handlerID;
 			int loadID = TestStrMsgLoader.handlerID;		
 			
 			String testMsg = StrMsgUtil.decorate(msgAsStr, storeID, transID, loadID);
-			RandomKey key = RandomKey.create();
-			String msgKey = topic + key;
+ 			int hKey = RandomKey.nextKey();
+			String msgKey = topic + hKey;
 			KeyedMessage<String, String> kMsg = new KeyedMessage<String, String>(topic, msgKey, testMsg);
 			producer.send(kMsg);
 			count++;
@@ -100,7 +102,7 @@ public class Driver
 		logger.debug("msgs added, count: " + count);
 	}
 	
-	int getMsgsFromTopic(String ooKeeper, String sTopic, String sGroup, int nThreads) throws StreamChannelExeption
+	int getMsgsFromTopic(String zooKeepers, String sTopic, String sGroup, int nThreads) throws StreamChannelExeption
 	{
 		int count = 0;
 		
@@ -135,8 +137,9 @@ public class Driver
 		}
 		catch(Exception ex)
 		{
-			logger.error("Driver.createWorkers() failed: " + ex);
-			throw new StreamChannelExeption("createWorkers() failed: " + ex);
+			String errMsg = "DriverVer.createWorkers() failed: " + ex;
+			logger.error(errMsg);
+			throw new StreamChannelExeption(errMsg);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package aly.kafka.tools;
 
-import aly.kafka.obu.msg.StoreCred;
+import aly.kafka.obu.msg.StoreDesc;
 
 public enum EnumStores 
 {	

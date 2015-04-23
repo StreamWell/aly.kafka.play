@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import aly.kafka.tools.ConfPlay;
+//import aly.kafka.tools.ConfPlay;
 
 /**
  * 
@@ -24,18 +24,18 @@ import aly.kafka.tools.ConfPlay;
  *         https://cwiki.apache.org/confluence/display/KAFKA/0.8.0+SimpleConsumer
  *         +Example
  */
-public class FirstConsumer
+public class LowLevelConsumer
 {
 	public static void main(String args[])
 	{
 		String consNamePref = "p21";
-		FirstConsumer firstComsumer = new FirstConsumer(consNamePref);
+		LowLevelConsumer firstComsumer = new LowLevelConsumer(consNamePref);
 
 		long maxReads = 3;
 		if (args.length >= 1)
 			maxReads = Long.parseLong(args[0]);
 
-		String topic = "test";
+		String topic = "zzz";
 		if (args.length >= 2)
 			topic = args[1];
 
@@ -66,7 +66,7 @@ public class FirstConsumer
 
 	static int NUM_OF_ERRORS_ALLOWED = 5;
 
-	FirstConsumer(String consNamePref)
+	LowLevelConsumer(String consNamePref)
 	{
 		m_replicaBrokers = new ArrayList<String>();
 		m_consNamePref = consNamePref;

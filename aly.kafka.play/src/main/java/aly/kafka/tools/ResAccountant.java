@@ -3,7 +3,7 @@ package aly.kafka.tools;
 import java.util.Map;
 
 import aly.kafka.loader.ILoader;
-import aly.kafka.obu.msg.StoreCred;
+import aly.kafka.obu.msg.StoreDesc;
 import aly.kafka.tranform.ITransormer;
 import aly.kafka.obu.msg.HandlerRecord;
 
@@ -23,24 +23,25 @@ public class ResAccountant
 	
 	private static ResAccountant build()
 	{
-		return ResAccounterBuilder.createInCode();
+		return ResBuilder.createInCode();
 	}
 	
 	/**
 	 *  some protection provided by package visibility
 	 */
-	void configure(Map<Integer,StoreCred> storeMap, Map<Integer,HandlerRecord> transfomerMap, Map<Integer,HandlerRecord> loaderMap)
+	void configure(Map<Integer,StoreDesc> storeMap, Map<Integer,HandlerRecord> transfomerMap, 
+			Map<Integer,HandlerRecord> loaderMap)
 	{
 		this.storeMap = storeMap;
 		this.transfomerMap = transfomerMap;
 		this.loaderMap = loaderMap;
 	}
 	
-	private Map<Integer,StoreCred> storeMap;
+	private Map<Integer,StoreDesc> storeMap;
 	private Map<Integer,HandlerRecord> transfomerMap;
 	private Map<Integer,HandlerRecord> loaderMap;
 	
-	public StoreCred getStoreCred(int storeID)
+	public StoreDesc getStoreCred(int storeID)
 	{
 		return storeMap.get(storeID);
 	}

@@ -6,7 +6,7 @@ import java.util.List;
 
 import aly.kafka.loader.vertica.VUtils;
 import aly.kafka.obu.msg.MetaField;
-import aly.kafka.obu.msg.StoreCred;
+import aly.kafka.obu.msg.StoreDesc;
 import aly.kafka.tools.StrValueExtractor;
 import aly.kafka.tools.StreamChannelExeption;
 
@@ -20,22 +20,24 @@ public class TestStrMsgLoader implements ILoader
 //	private int batchSize = 3;
 	
 	private List<String> namesInOrderList;
-	private VUtils vUtil = null;
+	private IStroreUtil storeUtil = null;
 	
-	@Override
-	public void configure(StoreCred storeCred, int batchSize) throws StreamChannelExeption
+	public void configure(StoreDesc storeCred, int batchSize, IStroreUtil storeUtil) throws StreamChannelExeption
 	{
 		if(bIsConfigured)
 			return;
 		
 		bIsConfigured = true;
 		
+		this.storeUtil = storeUtil;
+		
 //		this.storeCred = storeCred;
 		String[] fieldNames = FIELDS_IN_ORDER.split(",");
 		namesInOrderList = Arrays.asList(fieldNames);
 //		this.batchSize = batchSize;
-		vUtil = new VUtils(batchSize);
-		vUtil.prepare();
+		storeUtil.prepare();
+//		vUtil = new VUtils(batchSize);
+//		vUtil.prepare();
 	}
 
 	@Override
@@ -73,9 +75,9 @@ public class TestStrMsgLoader implements ILoader
 			}
 			
 			if(bFound == false)
-				throw new StreamChannelExeption("load() failed: can't find meta for the clumn " + column);
+				throw new StreamChannelExeption("TestStrMsgLoader.load() failed: can't find meta for the clumn " + column);
 		}
-		vUtil.addRecord(valueList);
+		storeUtil.addRecord(valueList);
 		return true;
 	}
 }
